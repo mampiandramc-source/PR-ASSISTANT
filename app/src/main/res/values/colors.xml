@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_deep_black">#101318</color>
+    <color name="surface_charcoal">#252B35</color>
+    <color name="accent_green">#32D583</color>
+    <color name="alert_red">#F04438</color>
+    <color name="text_white">#FFFFFF</color>
+    <color name="text_muted">#9AA4B2</color>
+</resources>
