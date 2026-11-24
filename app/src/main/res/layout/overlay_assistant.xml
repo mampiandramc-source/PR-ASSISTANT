@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/overlayRoot"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_deep_black"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:elevation="8dp">
+
+    <!-- Barre supérieure : statut, minuteur, réduire et fermer -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:id="@+id/statusDot"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginEnd="6dp"
+            android:background="@color/accent_green" />
+
+        <TextView
+            android:id="@+id/tvTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PRÊT"
+            android:textColor="@color/text_white"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="@color/surface_charcoal"
+            android:paddingHorizontal="6dp"
+            android:paddingVertical="2dp"
+            android:text="0"
+            android:textColor="@color/accent_green"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnToggleSize"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:layout_marginStart="6dp"
+            android:backgroundTint="@color/surface_charcoal"
+            android:minWidth="0dp"
+            android:paddingHorizontal="8dp"
+            android:text="−"
+            android:textColor="@color/text_white"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/btnCloseOverlay"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:layout_marginStart="4dp"
+            android:backgroundTint="@color/alert_red"
+            android:minWidth="0dp"
+            android:paddingHorizontal="8dp"
+            android:text="×"
+            android:textColor="@color/text_white"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <!-- Zone étendue : boutons d'action rapides -->
+    <LinearLayout
+        android:id="@+id/expandedPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvStateLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:text="Session active • Compte Principal"
+            android:textColor="@color/text_muted"
+            android:textSize="11sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnMarkDone"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/accent_green"
+                android:paddingHorizontal="6dp"
+                android:text="Follow +1"
+                android:textColor="@color/bg_deep_black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnPauseResume"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/surface_charcoal"
+                android:paddingHorizontal="6dp"
+                android:text="Pause"
+                android:textColor="@color/text_white"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnReportRestriction"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginTop="6dp"
+            android:backgroundTint="@color/alert_red"
+            android:paddingHorizontal="6dp"
+            android:text="Signaler restriction"
+            android:textColor="@color/text_white"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>
