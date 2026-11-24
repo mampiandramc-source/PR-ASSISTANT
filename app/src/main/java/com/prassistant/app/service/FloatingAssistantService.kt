@@ -130,7 +130,6 @@ class FloatingAssistantService : LifecycleService() {
         val btnMarkDone = view.findViewById<Button>(R.id.btnMarkDone)
         val btnReportRestriction = view.findViewById<Button>(R.id.btnReportRestriction)
 
-        // Déplacement fluide de la mini-fenêtre sans bloquer les autres applis
         var initialX = 0
         var initialY = 0
         var initialTouchX = 0f
@@ -171,9 +170,8 @@ class FloatingAssistantService : LifecycleService() {
             onFollowCompleted()
         }
 
-        btnPauseResume.setOnClickListener {
+        btnPauseResume?.setOnClickListener {
             if (isRestrictedLock) {
-                // Lever manuellement le blocage de restriction et reprendre
                 isRestrictedLock = false
                 isManualPause = false
                 isOnBreak = false
@@ -219,7 +217,6 @@ class FloatingAssistantService : LifecycleService() {
             persistSessionProgress()
         }
 
-        // Pause automatique par palier si activée
         if (settings.autoBreakEnabled &&
             settings.autoBreakEveryTasks > 0 &&
             sessionTasksCount % settings.autoBreakEveryTasks == 0
@@ -231,7 +228,6 @@ class FloatingAssistantService : LifecycleService() {
             return
         }
 
-        // Délai aléatoire configurable si activé
         if (settings.randomDelayEnabled) {
             val minD = settings.minDelaySec.coerceAtLeast(1)
             val maxD = settings.maxDelaySec.coerceAtLeast(minD)
@@ -304,37 +300,38 @@ class FloatingAssistantService : LifecycleService() {
 
     private fun updateUiState() {
         tvCounter?.text = sessionTasksCount.toString()
+        val pauseBtn = btnPauseResume
 
         when {
             isRestrictedLock -> {
                 statusDot?.setBackgroundColor(getColor(R.color.alert_red))
                 tvTimer?.text = "BLOQUÉ"
                 tvStateLabel?.text = "Restriction signalée • Session suspendue"
-                btnPauseResume?.text = "Débloquer"
+                pauseBtn?.text = "Débloquer"
             }
             isOnBreak -> {
                 statusDot?.setBackgroundColor(getColor(R.color.alert_red))
                 tvTimer?.text = formatDuration(remainingBreakSec)
                 tvStateLabel?.text = "Pause en cours • Repos"
-                btnPauseResume?.text = "Fin pause"
+                pauseBtn?.text = "Fin pause"
             }
             isManualPause -> {
                 statusDot?.setBackgroundColor(getColor(R.color.alert_red))
                 tvTimer?.text = "PAUSE"
                 tvStateLabel?.text = "Session en pause manuelle"
-                btnPauseResume?.text = "Reprendre"
+                pauseBtn?.text = "Reprendre"
             }
             isWaitingDelay -> {
                 statusDot?.setBackgroundColor(getColor(R.color.text_white))
                 tvTimer?.text = "${remainingDelaySec}s"
                 tvStateLabel?.text = "Délai variable actif • Patientez"
-                btnPauseResume?.text = "Pause"
+                pauseBtn?.text = "Pause"
             }
             else -> {
                 statusDot?.setBackgroundColor(getColor(R.color.accent_green))
                 tvTimer?.text = "PRÊT"
                 tvStateLabel?.text = "Prêt pour le prochain Follow"
-                btnPauseResume?.text = "Pause"
+                pauseBtn?.text = "Pause"
             }
         }
     }
